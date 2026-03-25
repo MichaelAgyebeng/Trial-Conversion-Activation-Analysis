@@ -80,14 +80,14 @@ An organization is considered Activated if it completes all defined trial goals.
 This provides a clear and measurable definition of successful onboarding.
 
 🧱 Data Models (SQL)
-1. Trial Goals मॉडल
+1. Trial Goals 
 
 Tracks whether each organization completed each goal.
 
 Output Example:
 
 organization_id	created_project	invited_team_member	uploaded_data	viewed_dashboard
-2. Trial Activation मॉडल
+2. Trial Activation 
 
 Determines whether an organization is fully activated.
 
@@ -137,16 +137,21 @@ Scalable tracking via data warehouse models
  ├── src/
  │    └── preprocessing.py
  ├── README.md
+
+ 
 🧠 Key Takeaways
 Not all activity is equal — specific actions drive conversion
 Activation is a multi-step behavioral milestone, not a single event
 Combining analytics + data modeling creates scalable business value
+
+
 📌 Next Steps (Improvements)
 Implement models using dbt for production readiness
 Build a real-time activation dashboard (Power BI / Tableau)
 Introduce cohort analysis for deeper retention insights
 Deploy a predictive model for conversion probability
+
 👤 Author
 
 Michael Agyebeng
-Data Analyst | Data Lead | Financial Engineering (MSc Candidate)
+Data Analyst | Data Officer | Financial Engineering 

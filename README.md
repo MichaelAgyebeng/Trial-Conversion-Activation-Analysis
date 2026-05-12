@@ -7,6 +7,7 @@ This project analyzes behavioral event data from organizations that started a pr
 The project combines Python (analytics) and SQL (data modeling) to deliver actionable insights for product and growth teams.
 
 🎯 Objectives
+
 Clean and explore raw behavioral event data
 Identify activities that strongly correlate with conversion
 Define trial goals based on user behavior
@@ -14,6 +15,7 @@ Build SQL models for:
 Trial Goals tracking
 Trial Activation classification
 Generate product insights and metrics to support decision-making
+
 🧱 Dataset Description
 
 The dataset consists of event-level behavioral data with the following fields:
@@ -26,14 +28,16 @@ converted	Whether the organization converted
 converted_at	Conversion timestamp
 trial_start	Trial start date
 trial_end	Trial end date
+
 ⚙️ Tech Stack
+
 Python: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
 SQL: Data modeling (marts layer)
 Jupyter Notebook: Analysis & visualization
+
 🧹 Data Cleaning & Preparation
 
 Key preprocessing steps included:
-
 Converted all date fields to proper datetime formats
 Removed duplicates and invalid records
 Standardized activity names
@@ -41,6 +45,7 @@ Filtered events within the valid trial window
 Created derived features such as:
 days_since_trial_start
 activity counts per organization
+
 🔍 Exploratory Analysis
 Key Analyses Performed:
 Overall conversion rate
@@ -53,7 +58,6 @@ These analyses helped identify high-impact behaviors associated with successful 
 🧠 Identifying Conversion Drivers
 
 To determine which activities influence conversion:
-
 Aggregated activity counts at the organization level
 Performed:
 Correlation analysis
@@ -80,24 +84,20 @@ An organization is considered Activated if it completes all defined trial goals.
 This provides a clear and measurable definition of successful onboarding.
 
 🧱 Data Models (SQL)
+
 1. Trial Goals 
-
 Tracks whether each organization completed each goal.
-
 Output Example:
-
 organization_id	created_project	invited_team_member	uploaded_data	viewed_dashboard
+
 2. Trial Activation 
 
 Determines whether an organization is fully activated.
-
 Logic:
-
 Activated = All goals completed
-
 Output Example:
-
 organization_id	trial_activated
+
 📊 Product Metrics & Insights
 Key Metrics:
 ✅ Conversion Rate

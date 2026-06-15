@@ -1,157 +1,108 @@
-# Trial-Conversion-Activation-Analysis
+# 🚀 Trial-Conversion-Activation-Analysis
 
-📌 Overview
+An end-to-end analytics project designed to identify behavioral drivers of product conversion, define trial success, and build scalable data models for tracking user activation.
 
-This project analyzes behavioral event data from organizations that started a product trial between January and March. The goal is to identify key product activities that drive conversion, define trial success criteria (goals), and build scalable data models for tracking activation.
+---
 
-The project combines Python (analytics) and SQL (data modeling) to deliver actionable insights for product and growth teams.
+## 📌 Overview
+This project analyzes behavioral event data from organizations that started a product trial between January and March. By combining **Python (analytics)** and **SQL (data modeling)**, we transform raw event logs into actionable insights that empower product and growth teams to optimize onboarding and increase conversion rates.
 
-🎯 Objectives
+---
 
-Clean and explore raw behavioral event data
-Identify activities that strongly correlate with conversion
-Define trial goals based on user behavior
-Build SQL models for:
-Trial Goals tracking
-Trial Activation classification
-Generate product insights and metrics to support decision-making
+## 🎯 Objectives
+* **Clean & Explore:** Process raw behavioral event data.
+* **Correlate:** Identify activities that strongly drive conversion.
+* **Define:** Establish data-backed trial success criteria (goals).
+* **Model:** Build scalable SQL marts for Trial Goals and Activation classification.
+* **Deliver:** Provide product metrics and insights to support data-driven decision-making.
 
-🧱 Dataset Description
+---
 
-The dataset consists of event-level behavioral data with the following fields:
+## 🧱 Dataset Description
+The dataset contains event-level behavioral logs:
 
-Column	Description
-organization_id	Unique organization identifier
-activity_name	Product activity performed
-timestamp	Event timestamp
-converted	Whether the organization converted
-converted_at	Conversion timestamp
-trial_start	Trial start date
-trial_end	Trial end date
+| Column | Description |
+| :--- | :--- |
+| `organization_id` | Unique organization identifier |
+| `activity_name` | Name of the product activity performed |
+| `timestamp` | Event timestamp |
+| `converted` | Boolean flag (Target variable) |
+| `converted_at` | Conversion timestamp |
+| `trial_start` | Trial start date |
+| `trial_end` | Trial end date |
 
-⚙️ Tech Stack
+---
 
-Python: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
-SQL: Data modeling (marts layer)
-Jupyter Notebook: Analysis & visualization
+## ⚙️ Tech Stack
+* **Python:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+* **SQL:** Data modeling & warehouse marts
+* **Environment:** Jupyter Notebook (Analysis & Visualization)
 
-🧹 Data Cleaning & Preparation
+---
 
-Key preprocessing steps included:
-Converted all date fields to proper datetime formats
-Removed duplicates and invalid records
-Standardized activity names
-Filtered events within the valid trial window
-Created derived features such as:
-days_since_trial_start
-activity counts per organization
+## 🔍 Key Processes & Analysis
 
-🔍 Exploratory Analysis
-Key Analyses Performed:
-Overall conversion rate
-Activity frequency distribution
-Conversion rate by activity
-Retention trends over trial duration
+### 🧹 Data Cleaning
+* Standardized date/time formats.
+* Removed duplicates and noise.
+* Filtered events to the valid trial window.
+* **Feature Engineering:** Created `days_since_trial_start` and activity frequency counts.
 
-These analyses helped identify high-impact behaviors associated with successful conversions.
+### 🧠 Identifying Conversion Drivers
+By performing **Correlation Analysis** and **Logistic Regression**, we identified that specific "value-realization" activities serve as lead indicators for conversion.
 
-🧠 Identifying Conversion Drivers
+### 🎯 Trial Goals Definition
+Based on behavioral analysis, we defined the "Activated" state as an organization that completes these four core actions:
+1. Create a project
+2. Invite team members
+3. Upload data
+4. View dashboard
 
-To determine which activities influence conversion:
-Aggregated activity counts at the organization level
-Performed:
-Correlation analysis
-Logistic regression modeling
-Insight:
+---
 
-Certain activities consistently showed strong positive relationships with conversion, indicating they represent core value realization moments in the product.
+## 📊 Data Models (SQL)
 
-🎯 Trial Goals Definition
+We implemented two primary models in SQL:
 
-Based on behavioral analysis, the following trial goals were defined:
+1. **Trial Goals:** A feature-store style table tracking the completion status of each goal per organization.
+2. **Trial Activation:** A binary classification table where `trial_activated = TRUE` only if all four goals are met.
 
-Create a project
-Invite team members
-Upload data
-View dashboard
+---
 
-These actions represent meaningful engagement and product adoption.
+## 📈 Funnel Overview
+A clear view of the user journey from entry to revenue:
 
-⚡ Trial Activation Logic
+`Trial Started` ➡️ `Key Activity Performed` ➡️ `Activated` ➡️ `Converted`
 
-An organization is considered Activated if it completes all defined trial goals.
+*Key Insight:* Early engagement (within the first 72 hours) is the strongest predictor of long-term conversion.
 
-This provides a clear and measurable definition of successful onboarding.
+---
 
-🧱 Data Models (SQL)
-
-1. Trial Goals 
-Tracks whether each organization completed each goal.
-Output Example:
-organization_id	created_project	invited_team_member	uploaded_data	viewed_dashboard
-
-2. Trial Activation 
-
-Determines whether an organization is fully activated.
-Logic:
-Activated = All goals completed
-Output Example:
-organization_id	trial_activated
-
-📊 Product Metrics & Insights
-Key Metrics:
-✅ Conversion Rate
-⚡ Activation Rate
-⏱ Time to Conversion
-🔁 Retention Curve
-📉 Funnel Analysis
-Example Insights:
-Organizations completing more key actions are significantly more likely to convert
-Early engagement (first few days) is critical for activation
-Drop-offs occur before users complete core setup steps
-📈 Funnel Overview
-Trial Started
-Key Activity Performed
-Activated
-Converted
-
-This funnel highlights where users drop off and where optimization efforts should focus.
+## 📁 Project Structure
+```text
+trial-conversion-analysis/
+├── data/           # Raw events.csv
+├── notebooks/      # Analysis & modeling .ipynb
+├── sql/            # DDL & transformation scripts
+├── src/            # Preprocessing utilities
+└── README.md
+```
 
 🚀 Business Impact
+PQL Identification: Precise identification of Product Qualified Leads.
 
-This analysis enables:
+Strategy: Improved onboarding flows based on high-impact activities.
 
-Clear definition of product-qualified leads (PQLs)
-Improved onboarding strategies
-Better conversion forecasting
-Scalable tracking via data warehouse models
-📁 Project Structure
-📁 trial-conversion-analysis/
- ├── data/
- │    └── events.csv
- ├── notebooks/
- │    └── analysis.ipynb
- ├── sql/
- │    ├── trial_goals.sql
- │    └── trial_activation.sql
- ├── src/
- │    └── preprocessing.py
- ├── README.md
+Scalability: Production-ready SQL models for warehouse integration.
 
- 
-🧠 Key Takeaways
-Not all activity is equal — specific actions drive conversion
-Activation is a multi-step behavioral milestone, not a single event
-Combining analytics + data modeling creates scalable business value
+📌 Next Steps
+[ ] Migrate SQL models to dbt for production readiness.
 
+[ ] Build a real-time activation dashboard in Tableau/Power BI.
 
-📌 Next Steps (Improvements)
-Implement models using dbt for production readiness
-Build a real-time activation dashboard (Power BI / Tableau)
-Introduce cohort analysis for deeper retention insights
-Deploy a predictive model for conversion probability
+[ ] Implement Cohort Analysis to track long-term retention.
+
+[ ] Deploy a Predictive Lead Scoring model.
 
 👤 Author
-
-Michael Agyebeng
-Data Analyst | Data Officer | Financial Engineering 
+Michael Agyebeng Data Analyst | Data Officer | Financial Engineering
